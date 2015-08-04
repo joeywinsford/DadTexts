@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContactRetriever.cs" />
     <Compile Include="InboxScreen.cs" />
     <Compile Include="InboxScreenAdapter.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />

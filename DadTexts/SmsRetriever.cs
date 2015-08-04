@@ -1,12 +1,13 @@
 using System.Collections.Generic;
+using Android.App;
 
 namespace DadTexts
 {
 	public class SmsRetriever
 	{
-		private readonly InboxScreen _inboxScreen;
+		private readonly Activity _inboxScreen;
 
-		public SmsRetriever(InboxScreen inboxScreen)
+		public SmsRetriever(Activity inboxScreen)
 		{
 			_inboxScreen = inboxScreen;
 		}
