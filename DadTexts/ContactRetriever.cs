@@ -9,7 +9,7 @@ namespace DadTexts
 	{
 		private readonly Activity _context;
 
-		private Dictionary<string, string> _knownContacts = new Dictionary<string, string>();
+		private readonly Dictionary<string, string> _knownContacts = new Dictionary<string, string>();
 
 		public ContactRetriever(Activity context)
 		{
@@ -25,19 +25,17 @@ namespace DadTexts
 			}
 
 			var contactUri = Uri.WithAppendedPath(ContactsContract.PhoneLookup.ContentFilterUri, Uri.Encode(phoneNumber));
-			using (
-				var cursor = _context.ContentResolver.Query(contactUri,
-					new[] {ContactsContract.PhoneLookup.InterfaceConsts.DisplayName}, null, null, null))
+			using (var cursor = _context.ContentResolver.Query(contactUri, new[] {ContactsContract.PhoneLookup.InterfaceConsts.DisplayName}, null, null, null))
 			{
-				if (cursor.MoveToFirst())
+				if (!cursor.MoveToFirst())
 				{
-					var contactName = cursor.GetString(cursor.GetColumnIndex(ContactsContract.PhoneLookup.InterfaceConsts.DisplayName));
-					_knownContacts.Add(phoneNumber, contactName);
-					return contactName;
+					return null;
 				}
-			}
 
-			return null;
+				var contactName = cursor.GetString(cursor.GetColumnIndex(ContactsContract.PhoneLookup.InterfaceConsts.DisplayName));
+				_knownContacts.Add(phoneNumber, contactName);
+				return contactName;
+			}
 		}
 	}
 }

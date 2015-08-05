@@ -12,7 +12,7 @@ namespace DadTexts
 
 		public string Message { get; set; }
 
-		public SmsDirection Type { get; set; }
+		public SmsDirection Direction { get; set; }
 	}
 
 	public enum SmsDirection

@@ -27,7 +27,8 @@ namespace DadTexts
 			var view = convertView ?? _context.LayoutInflater.Inflate(Android.Resource.Layout.SimpleListItem2, null);
 			var smsEntry = _items[position];
 
-			view.FindViewById<TextView>(Android.Resource.Id.Text1).Text = _contactRetriever.GetContactName(smsEntry) ?? smsEntry.Address;
+			var direction = smsEntry.Direction == SmsDirection.Incoming ? "From " : "To ";
+			view.FindViewById<TextView>(Android.Resource.Id.Text1).Text = direction + (_contactRetriever.GetContactName(smsEntry) ?? smsEntry.Address);
 			view.FindViewById<TextView>(Android.Resource.Id.Text2).Text = smsEntry.Message;
 			return view;
 		}

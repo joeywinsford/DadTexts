@@ -28,7 +28,7 @@ namespace DadTexts
 						Address = cursor.GetString(cursor.GetColumnIndex(columns[2])),
 						Date = cursor.GetString(cursor.GetColumnIndex(columns[3])),
 						Message = cursor.GetString(cursor.GetColumnIndex(columns[4])),
-						Type = (SmsDirection) int.Parse(cursor.GetString(cursor.GetColumnIndex(columns[5])))
+						Direction = (SmsDirection) int.Parse(cursor.GetString(cursor.GetColumnIndex(columns[5])))
 					};
 					yield return sms;
 				}
